@@ -1,0 +1,34 @@
+
+import java.util.ArrayList;
+
+
+
+public class Hajautustaulu<K, V> {
+    
+    private ArrayList<Pari<K, V>> arvot;
+    private int arvoja;
+    
+    public Hajautustaulu() {
+        this.arvot = new ArrayList<>();
+    }
+    
+    
+    public V hae(K avain) {
+        int hajautusArvo = Math.abs(avain.hashCode() % this.arvot.size());
+        if (this.arvot.get(hajautusArvo) == null) {
+            return null;
+        }
+        
+        Pari<K, V> arvotIndeksissa = this.arvot.get(hajautusArvo);
+        
+        for (int i = 0; i < arvotIndeksissa.size(); i++) {
+            if (arvotIndeksissa.get(i).equals(avain)) {
+                return (V) arvotIndeksissa.get(i);
+            }
+        }
+        return null;
+    }
+    
+    
+    
+}
